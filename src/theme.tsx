@@ -31,6 +31,9 @@ export const theme = createMuiTheme({
     background: {
       default: '#fff',
     },
+    text: {
+      color: '#14171a',
+    },
   },
   shadows: [],
   overrides: {

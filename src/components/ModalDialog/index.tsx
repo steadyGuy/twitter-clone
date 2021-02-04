@@ -8,15 +8,15 @@ import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import { useStylesSignIn } from '../../pages/SignIn';
 
-interface AuthDialogProps {
-    title: string;
+interface ModalDialogProps {
+    title?: string;
     children: React.ReactNode;
     classes?: ReturnType<typeof useStylesSignIn>;
     visible: boolean;
     handleClose: () => void;
 }
 
-export const AuthDialog: React.FC<AuthDialogProps> = ({ title, handleClose, visible = false, children }) => {
+export const ModalDialog: React.FC<ModalDialogProps> = ({ title, handleClose, visible = false, children }) => {
     return (
         <Dialog open={visible} onClose={handleClose}>
             <DialogTitle id="form-dialog-title">

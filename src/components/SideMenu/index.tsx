@@ -1,8 +1,7 @@
 import React from 'react'
 
 import TwitterIcon from '@material-ui/icons/Twitter';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import TweetIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationIcon from '@material-ui/icons/NotificationsNone';
@@ -11,61 +10,100 @@ import MarkIcon from '@material-ui/icons/BookmarkBorder';
 import ListIcon from '@material-ui/icons/Subject';
 import ProfileIcon from '@material-ui/icons/PermIdentity';
 
-import { useHomeStyles } from '../../pages/Home';
+import { useHomeStyles } from '../../pages/Home/theme';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { Hidden } from '@material-ui/core';
+import classNames from 'classnames';
+import { ModalDialog } from '../ModalDialog';
+import { AddTweetForm } from '../AddTweetForm';
 
 interface SideMenuProps {
     classes: ReturnType<typeof useHomeStyles>;
 }
 
 export const SideMenu = ({ classes }: SideMenuProps): React.ReactElement => {
+
+    const [addTweetDialogVisibility, setAddTweetDialogVisibility] = React.useState(false);
+
+    const handleCloseAddTweetDialog = () => {
+        setAddTweetDialogVisibility(!addTweetDialogVisibility);
+    }
+
     return (
-        <List className={classes.list}>
-            <ListItem dense={true} className={classes.logo}>
+        <ul className={classes.list}>
+            <li className={classNames(classes.logo, classes.sideMenuListItem)}>
                 <IconButton aria-label="" color="primary">
                     <TwitterIcon className={classes.logoIcon} />
                 </IconButton>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
+            </li>
+            <li className={classes.sideMenuListItem}>
                 <div>
                     <SearchIcon className={classes.sideMenuListItemIcon} />
-                    <Typography className={classes.sideMenuListItemLabel} variant="h6">Поиск</Typography>
+                    <Hidden mdDown>
+                        <Typography className={classes.sideMenuListItemLabel} variant="h6">Поиск</Typography>
+                    </Hidden>
                 </div>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
+            </li>
+            <li className={classes.sideMenuListItem}>
                 <div>
                     <NotificationIcon className={classes.sideMenuListItemIcon} />
-                    <Typography className={classes.sideMenuListItemLabel} variant="h6">Уведомления</Typography>
+                    <Hidden mdDown>
+                        <Typography className={classes.sideMenuListItemLabel} variant="h6">Уведомления</Typography>
+                    </Hidden>
                 </div>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
+            </li>
+            <li className={classes.sideMenuListItem}>
                 <div>
                     <MailIcon className={classes.sideMenuListItemIcon} />
-                    <Typography className={classes.sideMenuListItemLabel} variant="h6">Сообщения</Typography>
+                    <Hidden mdDown>
+                        <Typography className={classes.sideMenuListItemLabel} variant="h6">Сообщения</Typography>
+                    </Hidden>
                 </div>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
+            </li>
+            <li className={classes.sideMenuListItem}>
                 <div>
                     <MarkIcon className={classes.sideMenuListItemIcon} />
-                    <Typography className={classes.sideMenuListItemLabel} variant="h6">Закладки</Typography>
+                    <Hidden mdDown>
+                        <Typography className={classes.sideMenuListItemLabel} variant="h6">Закладки</Typography>
+                    </Hidden>
                 </div>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
+            </li>
+            <li className={classes.sideMenuListItem}>
                 <div>
                     <ListIcon className={classes.sideMenuListItemIcon} />
-                    <Typography className={classes.sideMenuListItemLabel} variant="h6">Список</Typography>
+                    <Hidden mdDown>
+                        <Typography className={classes.sideMenuListItemLabel} variant="h6">Список</Typography>
+                    </Hidden>
                 </div>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
+            </li>
+            <li className={classes.sideMenuListItem}>
                 <div>
                     <ProfileIcon className={classes.sideMenuListItemIcon} />
-                    <Typography className={classes.sideMenuListItemLabel} variant="h6">Profile</Typography>
+                    <Hidden mdDown>
+                        <Typography className={classes.sideMenuListItemLabel} variant="h6">Profile</Typography>
+                    </Hidden>
                 </div>
-            </ListItem>
-            <ListItem className={classes.sideMenuListItem}>
-                <Button className={classes.sideMenuTweetBtn} variant="contained" color="primary" fullWidth>Tweet</Button>
-            </ListItem>
-        </List>
+            </li>
+            <li className={classes.sideMenuListItem}>
+                <Button
+                    onClick={handleCloseAddTweetDialog}
+                    className={classes.sideMenuTweetBtn}
+                    variant="contained"
+                    color="primary">
+                    <Hidden mdDown>
+                        Tweet
+                    </Hidden>
+                    <Hidden lgUp>
+                        <TweetIcon />
+                    </Hidden>
+                </Button>
+                <ModalDialog visible={addTweetDialogVisibility} handleClose={handleCloseAddTweetDialog}>
+                    <div className="wrapper" style={{ width: 550 }}>
+                        <AddTweetForm maxRows={15} classes={classes} />
+                    </div>
+                </ModalDialog>
+            </li>
+        </ul>
     )
 }

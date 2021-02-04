@@ -7,7 +7,7 @@ import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 
-import { AuthDialog } from "../components/AuthDialog";
+import { ModalDialog } from "../components/ModalDialog";
 import TextField from '@material-ui/core/TextField';
 export const useStylesSignIn = makeStyles((theme) => ({
     wrapper: {
@@ -131,7 +131,7 @@ export const SignIn: React.FC = () => {
                     <Typography><b>Присоединяйтесь к Твиттеру прямо сейчас!</b></Typography>
                     <Button onClick={handleClickOpenSignUp} className={classes.loginSideRegisterBtn} variant="contained" color="primary" fullWidth>Зарегистрироваться</Button>
                     <Button onClick={handleClickOpenSignIn} variant="outlined" color="primary" fullWidth>Войти</Button>
-                    <AuthDialog title="Войти в Твиттер" handleClose={handleCloseAuthDialog} visible={visibility === 'signIn'}>
+                    <ModalDialog title="Войти в Твиттер" handleClose={handleCloseAuthDialog} visible={visibility === 'signIn'}>
                         <FormControl className={classes.authFormControl} component="fieldset" fullWidth>
                             <FormGroup aria-label="position" row>
                                 <TextField
@@ -154,8 +154,8 @@ export const SignIn: React.FC = () => {
                             </FormGroup>
                             <Button onClick={handleClickOpenSignIn} variant="contained" color="primary" fullWidth>Войти</Button>
                         </FormControl>
-                    </AuthDialog>
-                    <AuthDialog title="Создайте учетную запись" handleClose={handleCloseAuthDialog} visible={visibility === 'signUp'}>
+                    </ModalDialog>
+                    <ModalDialog title="Создайте учетную запись" handleClose={handleCloseAuthDialog} visible={visibility === 'signUp'}>
                         <FormControl className={classes.authFormControl} component="fieldset" fullWidth>
                             <FormGroup aria-label="position" row>
                                 <TextField
@@ -186,7 +186,7 @@ export const SignIn: React.FC = () => {
                             </FormGroup>
                             <Button onClick={handleClickOpenSignUp} variant="contained" color="primary" fullWidth>Войти</Button>
                         </FormControl>
-                    </AuthDialog>
+                    </ModalDialog>
                 </div>
             </div>
         </div>
