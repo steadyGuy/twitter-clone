@@ -19,6 +19,8 @@ import { fetchTopics } from '../../store/ducks/actualTopics/actionCreators';
 import { ActualTopics } from '../../components/ActualTopics';
 import { Route } from 'react-router-dom';
 import { BackBtn } from '../../components/BackBtn';
+import { FullTweet } from './components/FullTweet';
+import { fetchTweet } from '../../store/ducks/tweet/actionCreators';
 
 
 export const Home = () => {
@@ -30,6 +32,7 @@ export const Home = () => {
     const handleFetchTweets = () => {
         dispatch(fetchTweets());
         dispatch(fetchTopics());
+      //  dispatch(fetchTweet(''));
     }
 
     React.useEffect(() => {
@@ -44,18 +47,22 @@ export const Home = () => {
                 </Grid>
                 <Grid item md={7} lg={6}>
                     <Paper className={classes.tweetsWrapper} variant="outlined">
-
-                        <Route path="/home/tweet/:any">
-                            <Paper className={classNames(classes.tweetsHeader, classes.tweetHeaderSticky)} variant="outlined">
+                        <Paper className={classNames(classes.tweetsHeader, classes.tweetHeaderSticky)} variant="outlined">
+                            <Route path="/home/:any">
                                 <BackBtn />
+                            </Route>
+
+                            <Route path='/home/tweet/:id' exact>
                                 <Typography variant="h6">Tweet</Typography>
-                            </Paper>
-                        </Route>
+                            </Route>
+
+                            <Route path={['/home', '/home/search']} exact>
+                                <Typography variant="h6">Home</Typography>
+                            </Route>
+                        </Paper>
+
 
                         <Route path={['/home', '/home/search']} exact>
-                            <Paper className={classNames(classes.tweetsHeader, classes.tweetHeaderSticky)} variant="outlined">
-                                <Typography variant="h6">Home</Typography>
-                            </Paper>
                             <Paper>
                                 <div className={classes.addFormIndentity}>
                                     <AddTweetForm classes={classes} />
@@ -63,12 +70,22 @@ export const Home = () => {
                                 <div className={classes.addFormBottomLine}></div>
                             </Paper>
                         </Route>
+
+
+
                         <Route path="/home" exact>
                             {
                                 isLoading ? <div className={classes.tweetsLoaderCentered}><CircularProgress /></div> :
                                     tweets.map((tweet) => (<Tweet key={tweet._id} _id={tweet._id} classes={classes} user={tweet.user} text={tweet.text} />))
                             }
                         </Route>
+
+                        <Route path="/home/tweet/:id" exact>
+                            <FullTweet />
+                        </Route>
+
+
+
                     </Paper>
                 </Grid>
                 <Grid item md={4} lg={3}>
@@ -90,6 +107,6 @@ export const Home = () => {
                     </div>
                 </Grid>
             </Grid>
-        </Container>
+        </Container >
     )
 }
