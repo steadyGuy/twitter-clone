@@ -38,6 +38,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         borderBottom: 0,
     },
     tweetsHeader: {
+        display: 'flex',
+        alignItems: 'center',
         borderLeft: 'none',
         borderRight: 'none',
         borderTop: 'none',
@@ -48,6 +50,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         '& h6': {
             fontWeight: 800,
         }
+    },
+    tweetHeaderBackBtn: {
+        padding: 8,
+        marginRight: 20,
     },
     tweetsLoaderCentered: {
         textAlign: 'center',
@@ -65,6 +71,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     tweet: {
         paddingBottom: 0,
         display: 'flex',
+        alignItems: 'flex-start',
         '&:hover': {
             backgroundColor: 'rgb(248,248,248)',
             cursor: 'pointer',
@@ -78,6 +85,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         marginRight: 10,
         width: theme.spacing(6),
         height: theme.spacing(6),
+    },
+    tweetWrapper: {
+        textDecoration: 'none',
+        color: 'inherit',
     },
     sideMenuListItem: {
         cursor: 'pointer',
@@ -202,6 +213,13 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     },
     rightSidebarListTrends: {
         paddingTop: 0,
+        '& a': {
+            textDecoration: 'none',
+            display: 'block',
+            color: 'inherit',
+        },
+        '& a:hover': {
+        },
     },
     rightSidebarListItem: {
         paddingLeft: 15,

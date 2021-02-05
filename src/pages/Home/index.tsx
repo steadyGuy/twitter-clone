@@ -1,4 +1,4 @@
-import { Grid, ListItem, Typography } from '@material-ui/core'
+import { Grid, IconButton, Typography } from '@material-ui/core'
 import React from 'react'
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,14 +10,15 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import classNames from 'classnames';
-import ListItemText from '@material-ui/core/ListItemText';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import { AddTweetForm } from '../../components/AddTweetForm';
 import { useHomeStyles } from './theme';
 import { SearchTextField } from '../../components/SearchTextField';
 import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectTweetsIsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
+import { fetchTopics } from '../../store/ducks/actualTopics/actionCreators';
+import { ActualTopics } from '../../components/ActualTopics';
+import { Route } from 'react-router-dom';
+import { BackBtn } from '../../components/BackBtn';
 
 
 export const Home = () => {
@@ -28,6 +29,7 @@ export const Home = () => {
 
     const handleFetchTweets = () => {
         dispatch(fetchTweets());
+        dispatch(fetchTopics());
     }
 
     React.useEffect(() => {
@@ -42,21 +44,31 @@ export const Home = () => {
                 </Grid>
                 <Grid item md={7} lg={6}>
                     <Paper className={classes.tweetsWrapper} variant="outlined">
-                        <Paper className={classNames(classes.tweetsHeader, classes.tweetHeaderSticky)} variant="outlined">
-                            <Typography variant="h6">Home</Typography>
-                        </Paper>
 
-                        <Paper>
-                            <div className={classes.addFormIndentity}>
-                                <AddTweetForm classes={classes} />
-                            </div>
-                            <div className={classes.addFormBottomLine}></div>
-                        </Paper>
+                        <Route path="/home/tweet/:any">
+                            <Paper className={classNames(classes.tweetsHeader, classes.tweetHeaderSticky)} variant="outlined">
+                                <BackBtn />
+                                <Typography variant="h6">Tweet</Typography>
+                            </Paper>
+                        </Route>
 
-                        {
-                            isLoading ? <div className={classes.tweetsLoaderCentered}><CircularProgress /></div> :
-                                tweets.map((tweet) => (<Tweet key={tweet._id} classes={classes} user={tweet.user} text={tweet.text} />))
-                        }
+                        <Route path={['/home', '/home/search']} exact>
+                            <Paper className={classNames(classes.tweetsHeader, classes.tweetHeaderSticky)} variant="outlined">
+                                <Typography variant="h6">Home</Typography>
+                            </Paper>
+                            <Paper>
+                                <div className={classes.addFormIndentity}>
+                                    <AddTweetForm classes={classes} />
+                                </div>
+                                <div className={classes.addFormBottomLine}></div>
+                            </Paper>
+                        </Route>
+                        <Route path="/home" exact>
+                            {
+                                isLoading ? <div className={classes.tweetsLoaderCentered}><CircularProgress /></div> :
+                                    tweets.map((tweet) => (<Tweet key={tweet._id} _id={tweet._id} classes={classes} user={tweet.user} text={tweet.text} />))
+                            }
+                        </Route>
                     </Paper>
                 </Grid>
                 <Grid item md={4} lg={3}>
@@ -74,30 +86,7 @@ export const Home = () => {
                                 ),
                             }}
                         />
-                        <Paper>
-                            <div className={classes.rightSidebarTrends}>
-                                <div className={classes.rightSidebarTrendsHeader}>
-                                    <Typography variant="h6">Trends for you</Typography>
-                                </div>
-                                <Divider component="div" />
-                                <List className={classes.rightSidebarListTrends}>
-
-                                    {
-                                        new Array(3).fill(
-                                            <React.Fragment>
-                                                <ListItem className={classes.rightSidebarListItem}>
-                                                    <ListItemText
-                                                        primary="Украина"
-                                                        secondary={<Typography component="p" variant="body1"> 3,136 Tweets</Typography>}>
-                                                    </ListItemText>
-                                                </ListItem>
-                                                <Divider component="li" />
-                                            </React.Fragment>
-                                        )
-                                    }
-                                </List>
-                            </div>
-                        </Paper>
+                        <ActualTopics title="sadsad" classes={classes} />
                     </div>
                 </Grid>
             </Grid>
