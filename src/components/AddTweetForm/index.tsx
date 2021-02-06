@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import { useHomeStyles } from '../../pages/Home/theme';
+import { useDispatch } from 'react-redux';
+import { fetchAddTweet } from '../../store/ducks/tweets/actionCreators';
 
 interface AddTweetFormProps {
     classes: ReturnType<typeof useHomeStyles>,
@@ -18,6 +20,8 @@ interface AddTweetFormProps {
 let showTextCount: boolean = false;
 
 export const AddTweetForm = ({ classes, maxRows }: AddTweetFormProps): React.ReactElement => {
+
+    const dispatch = useDispatch();
 
     const TEXT_LIMIT = 280;
 
@@ -32,6 +36,7 @@ export const AddTweetForm = ({ classes, maxRows }: AddTweetFormProps): React.Rea
     }
 
     const handleTweet = (): void => {
+        dispatch(fetchAddTweet(text));
         setText('');
     }
 

@@ -24,6 +24,7 @@ export const fetchTweet = (payload: string): FetchTweetActionInterface => ({
     payload,
 });
 
+
 export type TweetActions =
     SetTweetActionInterface |
     SetTweetLoadingStateActionInterface |
