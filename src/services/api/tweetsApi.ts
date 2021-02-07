@@ -3,7 +3,7 @@ import { Tweet, TweetState } from "../../store/ducks/tweet/contracts/state";
 import { TweetsState } from "../../store/ducks/tweets/contracts/state";
 
 async function fetchTweets(): Promise<TweetsState['items']> {
-    let {data} = await axios.get("/tweets");
+    let {data} = await axios.get("/tweets?_sort=id&_order=desc");
     return data;
 }
 

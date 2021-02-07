@@ -1,11 +1,13 @@
 import produce, { Draft } from 'immer';
-import { TweetsActions, TweetsActionsType } from './actionCreators';
+import { TweetsActions } from './actionCreators';
+import { TweetsActionsType } from './contracts/actionTypes';
 
-import { TweetsState, LoadingState } from './contracts/state';
+import { TweetsState, LoadingState, AddTweetLoadingState } from './contracts/state';
 
 const initialTweetState: TweetsState = {
     items: [],
     loadingState: LoadingState.NEVER,
+    addTweetState: AddTweetLoadingState.NEVER,
 }
 
 export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsActions) => {
@@ -26,13 +28,20 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
             draft.loadingState = LoadingState.LOADING;
             break;
 
-        // case TweetsActionsType.ADD_TWEET:
-        //     draft.items.push(action.payload);
-        //     draft.loadingState = LoadingState.LOADED;
-        //     break;
-        // case TweetsActionsType.FETCH_ADD_TWEET:
-        //     draft.loadingState = LoadingState.LOADING;
-        //     break;
+        case TweetsActionsType.ADD_TWEET:
+            draft.items.unshift(action.payload);
+            //TODO: BAD-CODING
+            draft.addTweetState = AddTweetLoadingState.NEVER;
+            break;
+
+        case TweetsActionsType.FETCH_ADD_TWEET:
+            draft.addTweetState = AddTweetLoadingState.LOADING;
+            break;
+
+        case TweetsActionsType.SET_ADD_TWEET_STATE:
+            draft.addTweetState = AddTweetLoadingState.ERROR;
+            break;
+
     }
 
 }, initialTweetState);

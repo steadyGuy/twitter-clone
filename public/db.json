@@ -19,33 +19,56 @@
         "avatarUrl": "https://source.unsplash.com/random/100x100?4"
       },
       "text": "Anim pariatur do nostrud duis magna non mollit. Quis ipsum commodo quis aliqua. Tempor mollit velit officia aliqua irure deserunt sunt sunt. Eiusmod irure aliqua incididunt cillum occaecat ullamco ad ex ex. Est laboris culpa pariatur eu ut eiusmod tempor culpa aliquip."
-    }
-  ],
-  "topics": [
-    {
-      "name": "Ukrainian",
-      "count": 22,
-      "_id": "601808cb017asdsaabfdc6451c29c"
     },
     {
-      "name": "cryptocurrency",
-      "count": 55,
-      "_id": "601808cb01ds7abfdc9421c29c"
+      "_id": "pkwzob8z4vg",
+      "text": "dsfsd",
+      "user": {
+        "fullName": "Randolph Clay",
+        "nickName": "vertide",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": 3
     },
     {
-      "name": "blockchain",
-      "count": 111,
-      "_id": "601808cf017abfdcdsfss9451c29c"
+      "_id": "8eyik5jipbq",
+      "text": "sdfdsf sdf sd fsdf ",
+      "user": {
+        "fullName": "Randolph Clay",
+        "nickName": "vertide",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": 4
     },
     {
-      "name": "NewsOne и ZIK",
-      "count": 2214,
-      "_id": "601828cb017abfdc9dsf451c29c"
+      "_id": "diw8drro05c",
+      "text": "В какой-то момент понимаешь, что просто невозможно всё выучить! Вот например продвинутая среда react. Сам react, nextjs, gatsby и react-native. + ко всему вагон пакетов и плагинов. Да невозможно всё это знать на уровне \"проснулся ночью и зачитал на зубок\". Чего так все парятся?",
+      "user": {
+        "fullName": "Randolph Clay",
+        "nickName": "vertide",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": 5
     },
     {
-      "name": "Это россия!",
-      "count": 43422,
-      "_id": "601808cb117abfdc9sdf451c29c"
+      "_id": "u9jsqza9ie",
+      "text": "dgfgdfg",
+      "user": {
+        "fullName": "Randolph Clay",
+        "nickName": "vertide",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": 6
+    },
+    {
+      "_id": "g8inozaiw94",
+      "text": "trhfghgf",
+      "user": {
+        "fullName": "Stas BagretsovSocks",
+        "nickName": "stassonmars",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": 7
     }
   ],
   "users": [
